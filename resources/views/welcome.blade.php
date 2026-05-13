@@ -184,7 +184,7 @@
                 <h1> Student Management</h1>
                 <span class="badge"> Ray Debugger Active</span>
             </div>
-            
+            <!-- add student -->
             <h2> Add New Student</h2>
             
             @if(session('success'))

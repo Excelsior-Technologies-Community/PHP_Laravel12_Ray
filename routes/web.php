@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RayController;
-
+// all routes 
 Route::get('/', [RayController::class, 'create'])->name('student.create');
 Route::post('/store', [RayController::class, 'store'])->name('student.store');
 Route::get('/students', [RayController::class, 'list'])->name('student.list');

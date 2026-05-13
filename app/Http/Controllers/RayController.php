@@ -57,7 +57,7 @@ class RayController extends Controller
         return redirect()->route('student.create')->with('success', 'Student added successfully!');
     }
 
-    // Show all students
+    // Show all students list
     public function list()
     {
         ray()->showQueries();

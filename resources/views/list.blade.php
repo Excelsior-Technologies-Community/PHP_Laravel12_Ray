@@ -243,6 +243,7 @@
     <div class="container">
         <div class="card">
             <div class="header">
+                <!-- Student Directory -->
                 <h1> Student Directory</h1>
                 <p>Manage all student records</p>
                 <span class="badge"> Real-time Debug Active</span>
