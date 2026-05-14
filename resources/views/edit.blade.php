@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student - Laravel Ray</title>
+    <!-- edit student -->
+    <title>Edit Student - Laravel Ray</title>
     <style>
         * {
             margin: 0;
@@ -47,39 +48,10 @@
             font-size: 14px;
         }
         
-        .badge {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        
         h2 {
             color: #333;
             font-size: 22px;
             margin-bottom: 20px;
-        }
-        
-        .alert {
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
         }
         
         .form-group {
@@ -100,7 +72,6 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 14px;
-            transition: border-color 0.3s;
         }
         
         input:focus, select:focus {
@@ -181,30 +152,19 @@
     <div class="container">
         <div class="card">
             <div class="header">
-                <h1> Student Management</h1>
-                <span class="badge"> Ray Debugger Active</span>
+                <h1> Edit Student</h1>
+                <p>Update student information</p>
             </div>
-            <!-- add student -->
-            <h2> Add New Student</h2>
             
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+            <h2>Update Record</h2>
             
-            @if(session('error'))
-                <div class="alert alert-error">
-                    {{ session('error') }}
-                </div>
-            @endif
-            
-            <form method="POST" action="{{ route('student.store') }}">
+            <form method="POST" action="{{ route('student.update', $student->id) }}">
                 @csrf
+                @method('PUT')
                 
                 <div class="form-group">
                     <label>Full Name *</label>
-                    <input type="text" name="name" placeholder="Enter full name" value="{{ old('name') }}">
+                    <input type="text" name="name" value="{{ old('name', $student->name) }}">
                     @error('name')
                         <span class="error">{{ $message }}</span>
                     @enderror
@@ -212,7 +172,7 @@
                 
                 <div class="form-group">
                     <label>Email Address *</label>
-                    <input type="email" name="email" placeholder="Enter email address" value="{{ old('email') }}">
+                    <input type="email" name="email" value="{{ old('email', $student->email) }}">
                     @error('email')
                         <span class="error">{{ $message }}</span>
                     @enderror
@@ -220,7 +180,7 @@
                 
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input type="tel" name="phone" placeholder="Enter phone number" value="{{ old('phone') }}">
+                    <input type="tel" name="phone" value="{{ old('phone', $student->phone) }}">
                     @error('phone')
                         <span class="error">{{ $message }}</span>
                     @enderror
@@ -229,13 +189,12 @@
                 <div class="form-group">
                     <label>Course *</label>
                     <select name="course">
-                        <option value="">Select Course</option>
-                        <option value="PHP" {{ old('course') == 'PHP' ? 'selected' : '' }}>PHP Development</option>
-                        <option value="JavaScript" {{ old('course') == 'JavaScript' ? 'selected' : '' }}>JavaScript</option>
-                        <option value="Python" {{ old('course') == 'Python' ? 'selected' : '' }}>Python</option>
-                        <option value="Laravel" {{ old('course') == 'Laravel' ? 'selected' : '' }}>Laravel</option>
-                        <option value="React" {{ old('course') == 'React' ? 'selected' : '' }}>React.js</option>
-                        <option value="Node.js" {{ old('course') == 'Node.js' ? 'selected' : '' }}>Node.js</option>
+                        <option value="PHP" {{ $student->course == 'PHP' ? 'selected' : '' }}>PHP Development</option>
+                        <option value="JavaScript" {{ $student->course == 'JavaScript' ? 'selected' : '' }}>JavaScript</option>
+                        <option value="Python" {{ $student->course == 'Python' ? 'selected' : '' }}>Python</option>
+                        <option value="Laravel" {{ $student->course == 'Laravel' ? 'selected' : '' }}>Laravel</option>
+                        <option value="React" {{ $student->course == 'React' ? 'selected' : '' }}>React.js</option>
+                        <option value="Node.js" {{ $student->course == 'Node.js' ? 'selected' : '' }}>Node.js</option>
                     </select>
                     @error('course')
                         <span class="error">{{ $message }}</span>
@@ -244,16 +203,16 @@
                 
                 <div class="form-group">
                     <div class="status-toggle">
-                        <input type="checkbox" name="status" value="1" {{ old('status', '1') == '1' ? 'checked' : '' }}>
+                        <input type="checkbox" name="status" value="1" {{ $student->status ? 'checked' : '' }}>
                         <label>Active Status</label>
                     </div>
                 </div>
                 
-                <button type="submit"> Save Student</button>
+                <button type="submit"> Update Student</button>
             </form>
             
             <div class="link">
-                <a href="{{ route('student.list') }}"> View All Students</a>
+                <a href="{{ route('student.list') }}">← Back to List</a>
             </div>
         </div>
     </div>
