@@ -10,3 +10,5 @@ Route::get('/students/{id}/edit', [RayController::class, 'edit'])->name('student
 Route::put('/students/{id}', [RayController::class, 'update'])->name('student.update');
 Route::delete('/students/{id}', [RayController::class, 'destroy'])->name('student.destroy');
 Route::get('/students/search', [RayController::class, 'search'])->name('student.search');
+
+Route::get('/activity',[RayController::class,'activity'])->name('activity');
