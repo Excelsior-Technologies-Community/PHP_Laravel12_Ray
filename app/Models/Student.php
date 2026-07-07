@@ -14,10 +14,19 @@ class Student extends Model
         'email',
         'phone',
         'course',
-        'status'
+        'status',
+        'profile_image'
     ];
 
     protected $casts = [
         'status' => 'boolean'
     ];
+
+    public function getProfileImageUrlAttribute()
+    {
+        if ($this->profile_image) {
+            return asset('storage/' . $this->profile_image);
+        }
+        return asset('images/default-avatar.png');
+    }
 }

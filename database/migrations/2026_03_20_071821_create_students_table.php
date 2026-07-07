@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('course')->nullable();
             $table->boolean('status')->default(true);
+            $table->string('profile_image')->nullable();
             $table->timestamps();
         });
     }
