@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         'student_name',
-        'action'
+        'action',
+        'details'
+    ];
+
+    protected $casts = [
+        'details' => 'array'
     ];
 }
